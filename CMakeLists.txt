@@ -10,7 +10,15 @@ add_compile_options(-Wall -Wextra)
 
 add_library(gason STATIC src/gason.cpp)
 link_libraries(gason)
-add_executable(test-suite src/test-suite.cpp)
-add_executable(gasonpp src/pretty-print.cpp)
-add_executable(benchmark src/benchmark.cpp)
-target_include_directories(benchmark PRIVATE rapidjson/include)
+#add_executable(test-suite src/test-suite.cpp)
+#add_executable(gasonpp src/pretty-print.cpp)
+#add_executable(benchmark src/benchmark.cpp)
+#target_include_directories(benchmark PRIVATE rapidjson/include)
+
+INSTALL(
+  DIRECTORY ${CMAKE_SOURCE_DIR}/src/
+  DESTINATION include
+  FILES_MATCHING PATTERN "*.h*")
+
+INSTALL(TARGETS gason
+  ARCHIVE DESTINATION lib)
